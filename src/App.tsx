@@ -2,8 +2,7 @@ import React from 'react';
 
 function App() {
   return (
-    <div>Github explorer
-    </div>
+    <div>Github explorer</div>
   );
 }
 
