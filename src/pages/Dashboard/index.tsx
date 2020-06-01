@@ -20,7 +20,9 @@ const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
   const [repositories, setRepositories] = useState<Repository[]>(() => {
-    const storageRepositories = localStorage.getItem('@GithubExplorer:repositories');
+    const storageRepositories = localStorage.getItem(
+      '@GithubExplorer:repositories',
+    );
 
     if (storageRepositories) {
       return JSON.parse(storageRepositories);
@@ -29,10 +31,15 @@ const Dashboard: React.FC = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem('@GithubExplorer:repositories', JSON.stringify(repositories));
+    localStorage.setItem(
+      '@GithubExplorer:repositories',
+      JSON.stringify(repositories),
+    );
   }, [repositories]);
 
-  async function handleAddRepository(event: FormEvent<HTMLFormElement>): Promise<any> {
+  async function handleAddRepository(
+    event: FormEvent<HTMLFormElement>,
+  ): Promise<any> {
     event.preventDefault();
 
     if (!newRepo) {
@@ -67,12 +74,18 @@ const Dashboard: React.FC = () => {
         <button type="submit">Pesquisar</button>
       </Form>
 
-      { inputError && <Error>{inputError}</Error> }
+      {inputError && <Error>{inputError}</Error>}
 
       <Repositories>
-        {repositories.map(repository => (
-          <Link key={repository.full_name} to={`/repository/${repository.full_name}`}>
-            <img src={repository.owner.avatar_url} alt={repository.owner.login} />
+        {repositories.map((repository) => (
+          <Link
+            key={repository.full_name}
+            to={`/repository/${repository.full_name}`}
+          >
+            <img
+              src={repository.owner.avatar_url}
+              alt={repository.owner.login}
+            />
             <div>
               <strong>{repository.full_name}</strong>
               <p>{repository.description}</p>

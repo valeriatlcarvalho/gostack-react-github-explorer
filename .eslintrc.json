@@ -42,6 +42,7 @@
       }
     ],
     "import/prefer-default-export": "off",
+    "camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
